@@ -41,7 +41,7 @@ export function NewsletterForm({ className }: { className?: string }) {
           placeholder="Your email address"
           aria-invalid={status === "error"}
           aria-describedby={messageId}
-          className="min-h-11 flex-1 border border-border bg-surface px-4 text-sm text-text placeholder:text-text-muted focus:border-cyan"
+          className="min-h-11 flex-1 border border-border-strong bg-surface px-4 text-sm text-text placeholder:text-text-muted focus:border-cyan"
         />
         <Button type="submit" variant="primary" disabled={status === "submitting"}>
           {status === "submitting" ? "Subscribing…" : "Subscribe"}

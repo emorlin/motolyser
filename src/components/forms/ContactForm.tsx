@@ -1,18 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { cx } from "@/lib/utils";
 
-type Errors = Partial<Record<"name" | "email" | "subject" | "message" | "consent", string>>;
+type FieldName = "name" | "email" | "subject" | "message" | "consent";
+type Errors = Partial<Record<FieldName, string>>;
 type Status = "idle" | "submitting" | "success" | "error";
 
 const fieldClasses =
-  "min-h-11 w-full border border-border bg-surface px-4 py-2.5 text-sm text-text placeholder:text-text-muted focus:border-cyan";
+  "min-h-11 w-full border border-border-strong bg-surface px-4 py-2.5 text-sm text-text placeholder:text-text-muted focus:border-cyan";
+
+const FIELD_ORDER: FieldName[] = ["name", "email", "subject", "message", "consent"];
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errors, setErrors] = useState<Errors>({});
+  const fieldRefs = useRef<Partial<Record<FieldName, HTMLInputElement | HTMLTextAreaElement>>>({});
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -42,6 +46,8 @@ export function ContactForm() {
     if (Object.keys(nextErrors).length > 0) {
       setErrors(nextErrors);
       setStatus("error");
+      const firstInvalid = FIELD_ORDER.find((field) => nextErrors[field]);
+      if (firstInvalid) fieldRefs.current[firstInvalid]?.focus();
       return;
     }
 
@@ -56,7 +62,7 @@ export function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="border border-green/40 bg-green/5 p-6">
+      <div className="border border-green/40 bg-green/5 p-6" role="status">
         <p className="font-sans text-base font-bold text-text">Message sent</p>
         <p className="mt-1 text-sm text-text-muted">
           Thanks for reaching out. We&rsquo;ll get back to you as soon as possible.
@@ -64,6 +70,8 @@ export function ContactForm() {
       </div>
     );
   }
+
+  const errorCount = Object.keys(errors).length;
 
   return (
     <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
@@ -76,6 +84,16 @@ export function ContactForm() {
         className="hidden"
       />
 
+      <p className="text-xs text-text-muted">All fields are required.</p>
+
+      {status === "error" && errorCount > 0 && (
+        <p role="alert" className="border border-warning/40 bg-warning/10 px-4 py-3 text-sm text-warning">
+          {errorCount === 1
+            ? "1 field needs your attention below."
+            : `${errorCount} fields need your attention below.`}
+        </p>
+      )}
+
       <div>
         <label htmlFor="name" className="mb-1.5 block text-sm font-medium text-text">
           Name
@@ -85,6 +103,11 @@ export function ContactForm() {
           name="name"
           type="text"
           autoComplete="name"
+          required
+          aria-required="true"
+          ref={(el) => {
+            fieldRefs.current.name = el ?? undefined;
+          }}
           className={cx(fieldClasses, errors.name && "border-warning")}
           aria-invalid={!!errors.name}
           aria-describedby={errors.name ? "name-error" : undefined}
@@ -105,6 +128,11 @@ export function ContactForm() {
           name="email"
           type="email"
           autoComplete="email"
+          required
+          aria-required="true"
+          ref={(el) => {
+            fieldRefs.current.email = el ?? undefined;
+          }}
           className={cx(fieldClasses, errors.email && "border-warning")}
           aria-invalid={!!errors.email}
           aria-describedby={errors.email ? "email-error" : undefined}
@@ -124,6 +152,11 @@ export function ContactForm() {
           id="subject"
           name="subject"
           type="text"
+          required
+          aria-required="true"
+          ref={(el) => {
+            fieldRefs.current.subject = el ?? undefined;
+          }}
           className={cx(fieldClasses, errors.subject && "border-warning")}
           aria-invalid={!!errors.subject}
           aria-describedby={errors.subject ? "subject-error" : undefined}
@@ -143,6 +176,11 @@ export function ContactForm() {
           id="message"
           name="message"
           rows={5}
+          required
+          aria-required="true"
+          ref={(el) => {
+            fieldRefs.current.message = el ?? undefined;
+          }}
           className={cx(fieldClasses, "resize-y", errors.message && "border-warning")}
           aria-invalid={!!errors.message}
           aria-describedby={errors.message ? "message-error" : undefined}
@@ -159,7 +197,12 @@ export function ContactForm() {
           <input
             type="checkbox"
             name="consent"
-            className="mt-0.5 h-4 w-4 shrink-0 border border-border bg-surface accent-green"
+            required
+            aria-required="true"
+            ref={(el) => {
+              fieldRefs.current.consent = el ?? undefined;
+            }}
+            className="mt-0.5 h-4 w-4 shrink-0 border border-border-strong bg-surface accent-green"
             aria-invalid={!!errors.consent}
             aria-describedby={errors.consent ? "consent-error" : undefined}
           />

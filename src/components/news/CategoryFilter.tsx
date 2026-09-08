@@ -31,7 +31,7 @@ export function CategoryFilter({
               "border px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] transition-colors",
               isActive
                 ? "border-cyan text-cyan"
-                : "border-border text-text-muted hover:border-cyan hover:text-cyan"
+                : "border-border-strong text-text-muted hover:border-cyan hover:text-cyan"
             )}
           >
             {cat.label}

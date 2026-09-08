@@ -30,7 +30,7 @@ export default async function DistributorsPage() {
             <a
               key={region}
               href={`#${region.toLowerCase().replace(/\s+/g, "-")}`}
-              className="border border-border px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] text-text-muted transition-colors hover:border-cyan hover:text-cyan"
+              className="border border-border-strong px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] text-text-muted transition-colors hover:border-cyan hover:text-cyan"
             >
               {region}
             </a>

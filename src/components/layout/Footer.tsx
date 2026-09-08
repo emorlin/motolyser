@@ -24,6 +24,7 @@ export function Footer() {
                 className="text-sm text-text-muted transition-colors hover:text-text"
               >
                 {link.label}
+                <span className="sr-only"> (opens in new tab)</span>
               </a>
             ) : (
               <Link

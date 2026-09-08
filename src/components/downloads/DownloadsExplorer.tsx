@@ -18,7 +18,7 @@ const TYPE_OPTIONS: Array<{ value: "all" | DownloadType; label: string }> = [
 ];
 
 const selectClasses =
-  "min-h-11 border border-border bg-surface px-4 text-sm text-text focus:border-cyan";
+  "min-h-11 border border-border-strong bg-surface px-4 text-sm text-text focus:border-cyan";
 
 export function DownloadsExplorer({
   downloads,

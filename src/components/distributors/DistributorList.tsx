@@ -43,7 +43,7 @@ export function DistributorList({
                               rel="noopener noreferrer"
                               className="text-sm font-medium text-green hover:text-green/80"
                             >
-                              Website →
+                              Website →<span className="sr-only"> (opens in new tab)</span>
                             </a>
                           )}
                           {d.contactEmail && (

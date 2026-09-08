@@ -9,8 +9,8 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary: "bg-green text-bg hover:bg-green/90",
-  secondary: "border border-border text-text hover:border-cyan hover:text-cyan",
-  download: "border border-cyan/40 text-cyan hover:bg-cyan/10",
+  secondary: "border border-border-strong text-text hover:border-cyan hover:text-cyan",
+  download: "border border-cyan/60 text-cyan hover:bg-cyan/10",
 };
 
 type LinkButtonProps = {
@@ -39,6 +39,7 @@ export function Button({ variant = "primary", className, children, ...rest }: Bu
         {...anchorRest}
       >
         {children}
+        {isExternal && <span className="sr-only"> (opens in new tab)</span>}
       </Link>
     );
   }

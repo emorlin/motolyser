@@ -16,6 +16,7 @@ export function ProductsDropdown({
 }) {
   const [open, setOpen] = useState(false);
   const closeTimeout = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const triggerRef = useRef<HTMLAnchorElement>(null);
 
   const show = () => {
     if (closeTimeout.current) clearTimeout(closeTimeout.current);
@@ -25,12 +26,21 @@ export function ProductsDropdown({
     closeTimeout.current = setTimeout(() => setOpen(false), 100);
   };
 
+  const handleKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === "Escape" && open) {
+      setOpen(false);
+      triggerRef.current?.focus();
+    }
+  };
+
   return (
-    <div className="relative" onMouseEnter={show} onMouseLeave={hide}>
+    <div className="relative" onMouseEnter={show} onMouseLeave={hide} onKeyDown={handleKeyDown}>
       <Link
+        ref={triggerRef}
         href={href}
         className="flex items-center gap-1 text-sm font-medium text-text-muted transition-colors hover:text-text"
         aria-expanded={open}
+        aria-haspopup="true"
         onFocus={show}
         onBlur={hide}
       >
