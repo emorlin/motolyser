@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ChevronDown } from "lucide-react";
 import { useRef, useState } from "react";
 
 type Item = { label: string; href: string };
@@ -45,9 +46,7 @@ export function ProductsDropdown({
         onBlur={hide}
       >
         {label}
-        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" aria-hidden="true">
-          <path d="M1 1l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        </svg>
+        <ChevronDown size={14} strokeWidth={1.5} aria-hidden="true" />
       </Link>
 
       {open && (

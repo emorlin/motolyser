@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { Menu, X } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
 import { PRIMARY_NAV } from "@/lib/constants";
 
@@ -32,13 +33,9 @@ export function MobileNav() {
         className="flex h-11 w-11 items-center justify-center text-text"
       >
         {open ? (
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M2 2l16 16M18 2 2 18" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+          <X size={20} strokeWidth={1.5} aria-hidden="true" />
         ) : (
-          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
-            <path d="M2 5h16M2 10h16M2 15h16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-          </svg>
+          <Menu size={20} strokeWidth={1.5} aria-hidden="true" />
         )}
       </button>
 
