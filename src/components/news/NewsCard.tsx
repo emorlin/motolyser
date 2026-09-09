@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { TechPlaceholder } from "@/components/ui/TechPlaceholder";
+import { MonoLabel } from "@/components/ui/MonoLabel";
 import type { NewsArticle } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
@@ -18,9 +19,9 @@ export function NewsCard({ article }: { article: NewsArticle }) {
     >
       <TechPlaceholder label={article.featuredImage.alt.toUpperCase()} className="aspect-16/10" dense />
       <div className="border-t border-border p-5">
-        <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted">
+        <MonoLabel as="p" size="2xs">
           {formatDate(article.date)} · {CATEGORY_LABEL[article.category]}
-        </p>
+        </MonoLabel>
         <h3 className="mt-2 font-sans text-base font-bold tracking-tight text-text">
           {article.title}
         </h3>

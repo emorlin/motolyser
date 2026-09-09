@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { MonoLabel } from "@/components/ui/MonoLabel";
 
 export function Breadcrumbs({ items }: { items: Array<{ label: string; href?: string }> }) {
   return (
-    <nav aria-label="Breadcrumb" className="font-mono text-xs uppercase tracking-[0.15em] text-text-muted">
+    <MonoLabel as="nav" aria-label="Breadcrumb">
       <ol className="flex flex-wrap items-center gap-2">
         {items.map((item, i) => (
           <li key={item.label} className="flex items-center gap-2">
@@ -19,6 +20,6 @@ export function Breadcrumbs({ items }: { items: Array<{ label: string; href?: st
           </li>
         ))}
       </ol>
-    </nav>
+    </MonoLabel>
   );
 }

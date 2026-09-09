@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Kicker } from "@/components/ui/Kicker";
 import { Accordion } from "@/components/faq/Accordion";
+import { MonoLabel } from "@/components/ui/MonoLabel";
 import { listFaqCategories } from "@/lib/cms/faq";
 
 export const metadata: Metadata = {
@@ -24,12 +25,9 @@ export default async function FaqPage() {
           <ul className="sticky top-24 flex flex-col gap-3">
             {categories.map((cat) => (
               <li key={cat.id}>
-                <a
-                  href={`#${cat.id}`}
-                  className="font-mono text-xs uppercase tracking-[0.15em] text-text-muted transition-colors hover:text-cyan"
-                >
+                <MonoLabel as="a" href={`#${cat.id}`} className="transition-colors hover:text-cyan">
                   {cat.title}
-                </a>
+                </MonoLabel>
               </li>
             ))}
           </ul>

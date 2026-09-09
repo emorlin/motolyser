@@ -1,4 +1,5 @@
 import { cx } from "@/lib/utils";
+import { MonoLabel } from "./MonoLabel";
 
 /**
  * Stand-in for real product/environment photography. Renders a labelled
@@ -37,9 +38,9 @@ export function TechPlaceholder({
       <span className="absolute bottom-3 left-3 h-3 w-3 border-b border-l border-cyan/50" />
       <span className="absolute bottom-3 right-3 h-3 w-3 border-b border-r border-cyan/50" />
 
-      <p className="relative px-6 text-center font-mono text-[11px] uppercase tracking-[0.15em] text-text-muted">
+      <MonoLabel as="p" size="2xs" className="relative px-6 text-center">
         {label}
-      </p>
+      </MonoLabel>
     </div>
   );
 }

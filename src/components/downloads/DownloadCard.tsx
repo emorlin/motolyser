@@ -1,4 +1,5 @@
 import { Button } from "@/components/ui/Button";
+import { MonoLabel } from "@/components/ui/MonoLabel";
 import type { Download } from "@/lib/types";
 import { formatDate } from "@/lib/utils";
 
@@ -20,9 +21,9 @@ export function DownloadCard({ download }: { download: Download }) {
   return (
     <div className="flex flex-col gap-4 border border-border bg-surface p-5 sm:flex-row sm:items-center sm:justify-between sm:gap-6 sm:border-x-0 sm:border-b-0 sm:border-t sm:bg-transparent sm:p-6 sm:first:border-t-0">
       <div>
-        <p className="font-mono text-[11px] uppercase tracking-[0.15em] text-cyan">
+        <MonoLabel as="p" size="2xs" tone="cyan">
           {TYPE_LABEL[download.type]}
-        </p>
+        </MonoLabel>
         <p className="mt-1 font-sans text-base font-bold tracking-tight text-text">
           {download.title}
         </p>

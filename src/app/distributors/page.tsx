@@ -4,6 +4,7 @@ import { Kicker } from "@/components/ui/Kicker";
 import { Button } from "@/components/ui/Button";
 import { DistributorList } from "@/components/distributors/DistributorList";
 import { listDistributorsByRegion } from "@/lib/cms/distributors";
+import { filterPillClasses } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Distributors",
@@ -30,7 +31,7 @@ export default async function DistributorsPage() {
             <a
               key={region}
               href={`#${region.toLowerCase().replace(/\s+/g, "-")}`}
-              className="border border-border-strong px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] text-text-muted transition-colors hover:border-cyan hover:text-cyan"
+              className={filterPillClasses()}
             >
               {region}
             </a>

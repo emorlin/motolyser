@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { NewsCategory } from "@/lib/types";
-import { cx } from "@/lib/utils";
+import { cx, filterPillClasses } from "@/lib/utils";
 
 const CATEGORIES: Array<{ value: NewsCategory | "all"; label: string }> = [
   { value: "all", label: "All" },
@@ -27,12 +27,7 @@ export function CategoryFilter({
             key={cat.value}
             href={href}
             aria-current={isActive ? "page" : undefined}
-            className={cx(
-              "border px-4 py-2 font-mono text-xs uppercase tracking-[0.15em] transition-colors",
-              isActive
-                ? "border-cyan text-cyan"
-                : "border-border-strong text-text-muted hover:border-cyan hover:text-cyan"
-            )}
+            className={filterPillClasses(isActive)}
           >
             {cat.label}
           </Link>

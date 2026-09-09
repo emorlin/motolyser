@@ -2,13 +2,12 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
-import { TechPlaceholder } from "@/components/ui/TechPlaceholder";
-import { LcdPanel } from "@/components/ui/LcdPanel";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import { FeatureList } from "@/components/product/FeatureList";
 import { SpecTable } from "@/components/product/SpecTable";
 import { Gallery } from "@/components/product/Gallery";
 import { ProductTabs } from "@/components/product/ProductTabs";
+import { ProductReadoutPhoto } from "@/components/product/ProductReadoutPhoto";
 import { DownloadList } from "@/components/downloads/DownloadList";
 import { NewsGrid } from "@/components/news/NewsGrid";
 import { listProducts, getProduct } from "@/lib/cms/products";
@@ -72,14 +71,10 @@ export default async function ProductPage(props: PageProps<"/products/[slug]">) 
               )}
             </div>
           </div>
-          <div className="relative">
-            <TechPlaceholder label={`${product.name.toUpperCase()} — PRODUCT PHOTO`} className="aspect-4/3" />
-            <LcdPanel
-              className="absolute -bottom-6 left-6 w-56 sm:w-64"
-              title="Motor Analysis"
-              rows={product.measurements}
-            />
-          </div>
+          <ProductReadoutPhoto
+            label={`${product.name.toUpperCase()} — PRODUCT PHOTO`}
+            rows={product.measurements}
+          />
         </Container>
       </section>
 

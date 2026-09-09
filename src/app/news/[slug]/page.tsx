@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Container } from "@/components/ui/Container";
 import { Breadcrumbs } from "@/components/common/Breadcrumbs";
 import { TechPlaceholder } from "@/components/ui/TechPlaceholder";
+import { Kicker } from "@/components/ui/Kicker";
 import { NewsGrid } from "@/components/news/NewsGrid";
 import { listNewsArticles, getNewsArticle } from "@/lib/cms/news";
 import { formatDate } from "@/lib/utils";
@@ -50,9 +51,9 @@ export default async function NewsArticlePage(props: PageProps<"/news/[slug]">) 
         />
 
         <div className="mt-6 max-w-2xl">
-          <p className="font-mono text-xs uppercase tracking-[0.2em] text-cyan">
+          <Kicker>
             {CATEGORY_LABEL[article.category]} · {formatDate(article.date)}
-          </p>
+          </Kicker>
           <h1 className="mt-3 font-sans text-3xl font-extrabold tracking-tight text-text sm:text-4xl">
             {article.title}
           </h1>

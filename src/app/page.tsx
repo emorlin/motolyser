@@ -2,9 +2,10 @@ import { Container } from "@/components/ui/Container";
 import { Kicker } from "@/components/ui/Kicker";
 import { Button } from "@/components/ui/Button";
 import { Icon } from "@/components/ui/Icon";
-import { LcdPanel } from "@/components/ui/LcdPanel";
+import { MonoLabel } from "@/components/ui/MonoLabel";
 import { TechPlaceholder } from "@/components/ui/TechPlaceholder";
 import { ProductGrid } from "@/components/product/ProductGrid";
+import { ProductReadoutPhoto } from "@/components/product/ProductReadoutPhoto";
 import { NewsGrid } from "@/components/news/NewsGrid";
 import { NewsletterForm } from "@/components/forms/NewsletterForm";
 import { listProducts } from "@/lib/cms/products";
@@ -66,25 +67,21 @@ export default async function HomePage() {
             </div>
           </div>
 
-          <div className="relative">
-            <TechPlaceholder label="MOTOLYSER — PRODUCT PHOTO" className="aspect-4/3" />
-            <LcdPanel
-              className="absolute -bottom-6 left-6 w-56 sm:w-64"
-              title="Motor Analysis"
-              rows={[
-                { label: "RPM", value: "41 952" },
-                { label: "TIMING", value: "27.5°" },
-                { label: "HALL A", value: "0.2°" },
-              ]}
-            />
-          </div>
+          <ProductReadoutPhoto
+            label="MOTOLYSER — PRODUCT PHOTO"
+            rows={[
+              { label: "RPM", value: "41 952" },
+              { label: "TIMING", value: "27.5°" },
+              { label: "HALL A", value: "0.2°" },
+            ]}
+          />
         </Container>
 
         <Container className="flex flex-wrap items-center gap-x-10 gap-y-4 border-t border-border py-6">
           {FEATURE_STRIP.map((item) => (
             <div key={item.label} className="flex items-center gap-2 text-text-muted">
               <Icon name={item.icon} className="h-4 w-4 text-cyan" />
-              <span className="font-mono text-xs uppercase tracking-[0.15em]">{item.label}</span>
+              <MonoLabel>{item.label}</MonoLabel>
             </div>
           ))}
         </Container>
